@@ -1,0 +1,120 @@
+$accent: #a1f763;
+$bg: #080808;
+$border: rgba(255, 255, 255, 0.07);
+$text: #f0f0f0;
+$muted: #888;
+$muted2: #555;
+$header-h: 68px;
+$sidebar-w: 220px;
+
+.sidebar {
+  position: fixed;
+  top: $header-h;
+  left: 0;
+  width: $sidebar-w;
+  height: calc(100vh - #{$header-h});
+  background: rgba(8, 8, 8, 0.96);
+  border-right: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  backdrop-filter: blur(16px);
+}
+
+.nav {
+  flex: 1;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: $muted;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: none;
+  font-family: inherit;
+  text-align: left;
+  transition:
+    color 0.2s,
+    background 0.2s;
+  width: 100%;
+
+  &:hover {
+    color: $text;
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.itemActive {
+  color: $accent !important;
+  background: rgba(161, 247, 99, 0.06) !important;
+
+  .icon svg {
+    stroke: $accent;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: stroke 0.2s;
+  }
+}
+
+.label {
+  flex: 1;
+}
+
+.activeLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: $accent;
+}
+
+.footer {
+  padding: 20px 24px;
+  border-top: 1px solid $border;
+}
+
+.roleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted2;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $border;
+  padding: 6px 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+}

@@ -1,0 +1,14 @@
+.app {
+  min-height: 100vh;
+  background: #080808;
+  color: #f0f0f0;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+// Reveal global — déclenché par App.jsx via data-reveal
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}

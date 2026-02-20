@@ -1,0 +1,546 @@
+$accent: #a1f763;
+$accentRed: #ff6b6b;
+$bg: #080808;
+$bg2: #0f0f0f;
+$bg3: #141414;
+$text: #f0f0f0;
+$muted: #555;
+$muted2: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+// ─── Page ─────────────────────────────────────────
+.page {
+  min-height: 100vh;
+  background: $bg;
+  color: $text;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+// ─── Fond animé ───────────────────────────────────
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.orb1 {
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  width: 800px;
+  height: 500px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse,
+    rgba(161, 247, 99, 0.07),
+    transparent 65%
+  );
+  animation: pulse 8s ease-in-out infinite;
+}
+
+.orb2 {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(161, 247, 99, 0.04),
+    transparent 65%
+  );
+  animation: pulse 11s ease-in-out infinite reverse;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// ─── Header ───────────────────────────────────────
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6vw;
+  height: 68px;
+  border-bottom: 1px solid $border;
+  background: rgba(8, 8, 8, 0.7);
+  backdrop-filter: blur(24px);
+}
+
+.logo img {
+  height: 42px;
+  width: auto;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted2;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $text;
+    .backArrow {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.backArrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+// ─── Main ─────────────────────────────────────────
+.main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 6vw 80px;
+}
+
+// ─── Card ─────────────────────────────────────────
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: $bg2;
+  border: 1px solid $border;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cardSuccess {
+  border-color: rgba(161, 247, 99, 0.2);
+  background: linear-gradient(160deg, rgba(161, 247, 99, 0.04) 0%, $bg2 60%);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Tag ──────────────────────────────────────────
+.tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: $accent;
+  margin-bottom: 20px;
+}
+
+// ─── Titre ────────────────────────────────────────
+.title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+
+.accent {
+  color: $accent;
+}
+.accentRed {
+  color: $accentRed;
+}
+
+.sub {
+  font-size: 0.82rem;
+  color: $muted2;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+// ─── Carte de course ──────────────────────────────
+.raceCard {
+  background: $bg3;
+  border: 1px solid rgba(161, 247, 99, 0.14);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.raceCardBadge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+}
+
+.raceName {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $text;
+}
+
+.raceDate {
+  font-size: 0.75rem;
+  color: $muted2;
+}
+
+// ─── "Connecté en tant que" ───────────────────────
+.connectedAs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  color: $muted2;
+  margin-bottom: 20px;
+
+  strong {
+    color: $text;
+    font-weight: 600;
+  }
+}
+
+.connectedDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $accent;
+  flex-shrink: 0;
+}
+
+// ─── Alerte mauvais compte ────────────────────────
+.alertBox {
+  background: $bg3;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alertRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alertLabel {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $muted;
+  white-space: nowrap;
+}
+
+.alertEmailTarget {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: $accent;
+}
+
+.alertEmailWrong {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: $accentRed;
+}
+
+.alertDivider {
+  height: 1px;
+  background: $border;
+}
+
+// ─── Formulaire ───────────────────────────────────
+.errorMsg {
+  background: rgba(255, 80, 80, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  color: $accentRed;
+  font-size: 0.78rem;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted;
+}
+
+.input {
+  background: $bg;
+  border: 1px solid $border;
+  padding: 13px 16px;
+  color: $text;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: $muted;
+  }
+
+  &:focus {
+    border-color: rgba(161, 247, 99, 0.4);
+  }
+}
+
+.inputLocked {
+  color: $muted2;
+  cursor: not-allowed;
+  opacity: 0.65;
+  background: $bg3;
+
+  &:focus {
+    border-color: $border;
+  }
+}
+
+.hint {
+  font-size: 0.65rem;
+  color: $muted;
+  letter-spacing: 0.04em;
+}
+
+// ─── Boutons ──────────────────────────────────────
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: $accent;
+  color: $bg;
+  padding: 15px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: none;
+  font-family: inherit;
+  margin-top: 4px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    opacity: 0.88;
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.submitLoading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.submitOutline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: transparent;
+  color: $text;
+  padding: 14px;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: none;
+  font-family: inherit;
+  margin-top: 4px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+
+  &:hover {
+    border-color: $accentRed;
+    background: rgba(255, 107, 107, 0.06);
+  }
+}
+
+// ─── Switch login ↔ register ──────────────────────
+.switchRow {
+  margin-top: 22px;
+  font-size: 0.76rem;
+  color: $muted2;
+  text-align: center;
+}
+
+.switchLink {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: $accent;
+  font-weight: 600;
+  cursor: none;
+  padding: 0;
+  margin-left: 4px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+// ─── Retour (wrong-account) ───────────────────────
+.backLink {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.72rem;
+  color: $muted;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $text;
+  }
+}
+
+// ─── Loader ───────────────────────────────────────
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+
+  span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $accent;
+    animation: bounce 1.2s ease-in-out infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.loaderText {
+  font-size: 0.78rem;
+  color: $muted2;
+  text-align: center;
+}
+
+// ─── Succès ───────────────────────────────────────
+.successEmoji {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+}
+
+// ─── Responsive ───────────────────────────────────
+@media (max-width: 520px) {
+  .card {
+    padding: 36px 24px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .main {
+    padding: 40px 4vw 60px;
+    align-items: flex-start;
+    padding-top: 48px;
+  }
+
+  .fieldsRow {
+    grid-template-columns: 1fr;
+  }
+}

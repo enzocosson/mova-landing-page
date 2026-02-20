@@ -1,0 +1,445 @@
+$accent: #a1f763;
+$bg: #080808;
+$bg2: #0f0f0f;
+$bg3: #141414;
+$text: #f0f0f0;
+$muted: #555;
+$muted2: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+// ─── Layout ───────────────────────────────────────
+.section {
+  padding: 120px 6vw;
+  border-bottom: 1px solid $border;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.alt {
+  background: $bg2;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.innerReverse {
+  direction: rtl;
+  > * {
+    direction: ltr;
+  }
+}
+
+.text {
+  h2 {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin: 0 0 20px;
+  }
+  p {
+    color: $muted2;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin: 0 0 36px;
+    max-width: 420px;
+  }
+}
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+  margin-bottom: 20px;
+}
+.accent {
+  color: $accent;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid $border;
+  padding-top: 32px;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.85rem;
+    color: $muted2;
+  }
+}
+.dot {
+  width: 5px;
+  height: 5px;
+  background: $accent;
+  flex-shrink: 0;
+}
+.visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── Map Box ──────────────────────────────────────
+.mapBox {
+  width: 100%;
+  border: 1px solid $border;
+  background: $bg3;
+  overflow: hidden;
+}
+
+// ─── Stats Box ────────────────────────────────────
+.statsBox {
+  width: 100%;
+  background: $bg3;
+  border: 1px solid $border;
+  padding: 28px;
+}
+.statsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.statsTitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $muted2;
+}
+.statsBadge {
+  font-size: 0.68rem;
+  color: $accent;
+  background: rgba(161, 247, 99, 0.08);
+  border: 1px solid rgba(161, 247, 99, 0.2);
+  padding: 4px 10px;
+}
+.statsKpis {
+  display: flex;
+  border-top: 1px solid $border;
+  margin-top: 16px;
+}
+.statsKpi {
+  flex: 1;
+  padding: 20px 16px;
+  border-right: 1px solid $border;
+  &:last-child {
+    border-right: none;
+  }
+}
+.statsKpiVal {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: $accent;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.statsKpiLbl {
+  display: block;
+  font-size: 0.65rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// ─── Ranking ──────────────────────────────────────
+.illuRanking {
+  width: 100%;
+  background: $bg3;
+  border: 1px solid $border;
+  overflow: hidden;
+}
+.illuRankHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid $border;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $muted2;
+}
+.illuRankLive {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $accent;
+  font-size: 0.7rem;
+}
+.illuRankDot {
+  width: 6px;
+  height: 6px;
+  background: $accent;
+  display: block;
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.illuRankRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid $border;
+  transition: background 0.2s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
+.illuRankFirst {
+  background: rgba(161, 247, 99, 0.04);
+  .illuRankName {
+    color: $accent;
+  }
+  .illuRankTime {
+    color: $accent;
+  }
+}
+.illuRankNum {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: $muted;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.illuRankInfo {
+  flex: 1;
+}
+.illuRankName {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.illuRankPace {
+  display: block;
+  font-size: 0.7rem;
+  color: $muted;
+  letter-spacing: 0.04em;
+}
+.illuRankRight {
+  text-align: right;
+}
+.illuRankTime {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.illuRankDelta {
+  display: block;
+  font-size: 0.7rem;
+  color: $muted;
+  margin-top: 2px;
+}
+.illuRankFooter {
+  padding: 12px 24px;
+  border-top: 1px solid $border;
+  display: flex;
+  justify-content: center;
+}
+.illuRankRefresh {
+  font-size: 0.68rem;
+  color: $muted;
+  letter-spacing: 0.08em;
+  animation: fadeToggle 3s ease-in-out infinite;
+}
+@keyframes fadeToggle {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// ─── Spectator ────────────────────────────────────
+.illuSpectator {
+  width: 100%;
+  background: $bg3;
+  border: 1px solid $border;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+.illuSpecTop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.illuSpecAvatar {
+  width: 44px;
+  height: 44px;
+  background: rgba(161, 247, 99, 0.1);
+  border: 1px solid rgba(161, 247, 99, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $accent;
+  flex-shrink: 0;
+}
+.illuSpecName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.illuSpecStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: $muted2;
+}
+.illuSpecDot {
+  width: 5px;
+  height: 5px;
+  background: $accent;
+  display: block;
+  animation: blink 1.4s ease-in-out infinite;
+}
+.illuSpecRank {
+  margin-left: auto;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: $accent;
+  letter-spacing: -0.04em;
+}
+.illuSpecPhoto {
+  position: relative;
+  width: calc(100% + 56px);
+  margin: 0 -28px 24px;
+  overflow: hidden;
+  height: 160px;
+}
+.illuSpecImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85);
+}
+.illuSpecLiveBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(200, 30, 30, 0.85);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.illuSpecStats {
+  display: flex;
+  border: 1px solid $border;
+  margin-bottom: 24px;
+}
+.illuSpecStat {
+  flex: 1;
+  padding: 18px 16px;
+  text-align: center;
+  border-right: 1px solid $border;
+  &:last-child {
+    border-right: none;
+  }
+}
+.illuSpecVal {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 5px;
+}
+.illuSpecLbl {
+  display: block;
+  font-size: 0.62rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.illuSpecBar {
+  height: 3px;
+  background: $border;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.illuSpecBarFill {
+  height: 100%;
+  background: $accent;
+}
+.illuSpecBarLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: $muted;
+  margin-bottom: 24px;
+}
+.illuSpecBtn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1px solid $border;
+  color: $muted2;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: none;
+  font-family: inherit;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+  }
+}
+
+// ─── Responsive ───────────────────────────────────
+@media (max-width: 1100px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .innerReverse {
+    direction: ltr;
+  }
+  .statsKpis {
+    flex-wrap: wrap;
+  }
+  .illuSpecStats {
+    flex-wrap: wrap;
+  }
+}

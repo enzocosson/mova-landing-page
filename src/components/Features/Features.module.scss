@@ -1,0 +1,138 @@
+$accent: #a1f763;
+$bg3: #141414;
+$muted: #555;
+$muted2: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+.section {
+  padding: 120px 6vw;
+  border-bottom: 1px solid $border;
+}
+.header {
+  margin-bottom: 72px;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  h2 {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin: 0;
+  }
+}
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+  margin-bottom: 20px;
+}
+.accent {
+  color: $accent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid $border;
+}
+.card {
+  position: relative;
+  padding: 48px 36px;
+  border-right: 1px solid $border;
+  transition: background 0.3s;
+  cursor: none;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s;
+  &:last-child {
+    border-right: none;
+  }
+  &:hover {
+    background: $bg3;
+    .cardLine {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  p {
+    color: $muted2;
+    font-size: 0.84rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+}
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.icon {
+  color: $accent;
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+.stat {
+  text-align: right;
+}
+.statVal {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: $accent;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.statLbl {
+  display: block;
+  font-size: 0.6rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+.cardLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: $accent;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    opacity 0.3s,
+    transform 0.4s;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card {
+    border-bottom: 1px solid $border;
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

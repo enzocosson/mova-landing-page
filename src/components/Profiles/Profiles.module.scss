@@ -1,0 +1,127 @@
+$accent: #a1f763;
+$bg3: #141414;
+$muted: #555;
+$muted2: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+.section {
+  padding: 120px 6vw;
+  border-bottom: 1px solid $border;
+}
+.header {
+  margin-bottom: 72px;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  h2 {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin: 0;
+  }
+}
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+  margin-bottom: 20px;
+}
+.accent {
+  color: $accent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid $border;
+}
+.card {
+  padding: 56px 44px;
+  border-right: 1px solid $border;
+  transition: background 0.3s;
+  cursor: none;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s;
+  &:last-child {
+    border-right: none;
+  }
+  &:hover {
+    background: $bg3;
+  }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin: 24px 0 16px;
+  }
+  p {
+    color: $muted2;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    margin: 0 0 32px;
+  }
+}
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.icon {
+  color: $accent;
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+.cardTag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted;
+  border: 1px solid $border;
+  padding: 5px 12px;
+}
+.perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid $border;
+  padding-top: 28px;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.82rem;
+    color: $muted2;
+  }
+}
+.dot {
+  width: 4px;
+  height: 4px;
+  background: $accent;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    border-right: none;
+    border-bottom: 1px solid $border;
+  }
+}

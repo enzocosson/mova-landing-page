@@ -1,0 +1,643 @@
+$accent: #a1f763;
+$bg2: #0f0f0f;
+$bg3: #141414;
+$text: #f0f0f0;
+$muted: #555;
+$muted2: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+// ─── Panel base ───────────────────────────────────
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1000px;
+}
+
+.panelHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+}
+
+.panelTitle {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0;
+  color: $text;
+}
+
+.accent {
+  color: $accent;
+}
+
+// ─── Panel Map Full ───────────────────────────────
+.panelMapFull {
+  position: fixed;
+  top: 68px; // hauteur header
+  left: 220px; // largeur sidebar
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  overflow: hidden;
+
+  // Bordure subtile à gauche
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+
+  // Glow vert autour
+  box-shadow:
+    inset 0 0 80px rgba(161, 247, 99, 0.03),
+    inset 0 0 2px rgba(161, 247, 99, 0.08);
+}
+
+.mapOverlayBadge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(8, 8, 8, 0.88);
+  border: 1px solid rgba(161, 247, 99, 0.25);
+  padding: 7px 14px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #a1f763;
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.mapLiveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a1f763;
+  flex-shrink: 0;
+  animation: liveBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes liveBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.mapOverlayCoords {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 500;
+  background: rgba(8, 8, 8, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 6px 12px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #555;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+// ─── Race overlay (carte) ─────────────────────────
+.raceMapOverlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 500;
+  width: 260px;
+  background: rgba(8, 8, 8, 0.93);
+  border: 1px solid rgba(161, 247, 99, 0.22);
+  backdrop-filter: blur(16px);
+  animation: raceOverlayIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes raceOverlayIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.raceMapOverlayHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.raceMapOverlayName {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.raceMapOverlayClose {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #f0f0f0;
+  }
+}
+
+.raceMapOverlayMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.raceMapOverlayRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: #888;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+}
+
+.raceMapOverlayGpx {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.raceMapOverlayGpxOk {
+  color: #a1f763;
+}
+
+.raceMapOverlayGpxNone {
+  color: #444;
+}
+
+.raceMapOverlayGpxDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── Focus switch (carte) ─────────────────────────
+.mapFocusSwitch {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  background: rgba(8, 8, 8, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border-radius: 4px;
+  overflow: hidden;
+  pointer-events: auto;
+  position: absolute;
+}
+
+.mapSwitchOption {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: #555;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s;
+  white-space: nowrap;
+
+  svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+
+  &:hover {
+    color: #a1f763;
+  }
+}
+
+.mapSwitchOptionActive {
+  color: #a1f763 !important;
+}
+
+.mapSwitchOptionDenied {
+  color: #f76363 !important;
+
+  svg {
+    opacity: 0.75;
+  }
+}
+
+.mapSwitchThumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(161, 247, 99, 0.08);
+  border: 1px solid rgba(161, 247, 99, 0.35);
+  border-radius: 3px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+// ─── Stats grid ───────────────────────────────────
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid $border;
+}
+
+.statCard {
+  padding: 32px 28px;
+  border-right: 1px solid $border;
+  border-bottom: 1px solid $border;
+  position: relative;
+  transition: background 0.3s;
+  cursor: none;
+
+  &:nth-child(3n) {
+    border-right: none;
+  }
+  &:nth-last-child(-n + 3) {
+    border-bottom: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: $accent;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover {
+    background: $bg3;
+    &::before {
+      transform: scaleX(1);
+    }
+    .statValue {
+      color: $accent;
+    }
+  }
+}
+
+.statValue {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: $muted;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $text;
+  margin-bottom: 5px;
+}
+
+.statDesc {
+  font-size: 0.65rem;
+  color: $muted;
+  letter-spacing: 0.04em;
+}
+
+// ─── Empty state ──────────────────────────────────
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 80px 40px;
+  background: $bg2;
+  border: 1px solid $border;
+  text-align: center;
+
+  p {
+    color: $muted2;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+}
+
+.emptyIcon {
+  width: 56px;
+  height: 56px;
+  background: rgba(161, 247, 99, 0.06);
+  border: 1px solid rgba(161, 247, 99, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $accent;
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: $accent;
+  }
+}
+
+// ─── App CTA ──────────────────────────────────────
+.appCta {
+  background: $bg2;
+  border: 1px solid $border;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+      circle,
+      rgba(161, 247, 99, 0.05),
+      transparent 65%
+    );
+    pointer-events: none;
+  }
+}
+
+.appCtaCompact {
+  background: transparent;
+  border: none;
+  padding: 0;
+  &::after {
+    display: none;
+  }
+}
+
+.appCtaTitle {
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0;
+  color: $text;
+}
+
+.appCtaSub {
+  font-size: 0.85rem;
+  color: $muted2;
+  line-height: 1.8;
+  margin: 0 0 8px;
+  max-width: 480px;
+}
+
+.appCtaBtns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.appBtnWhite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  background: #fff;
+  color: #080808;
+  text-decoration: none;
+  cursor: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.appBtnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  background: transparent;
+  border: 1px solid rgba(161, 247, 99, 0.35);
+  color: $text;
+  text-decoration: none;
+  cursor: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $accent;
+    box-shadow: 0 8px 32px rgba(161, 247, 99, 0.12);
+  }
+}
+
+// ─── Profil ───────────────────────────────────────
+.profilCard {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 36px 40px;
+  background: $bg2;
+  border: 1px solid $border;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, $accent, transparent 60%);
+  }
+}
+
+.profilAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(161, 247, 99, 0.08);
+  border: 1px solid rgba(161, 247, 99, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: $accent;
+  overflow: hidden;
+  flex-shrink: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.profilMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $accent;
+  background: rgba(161, 247, 99, 0.08);
+  border: 1px solid rgba(161, 247, 99, 0.2);
+  padding: 4px 12px;
+  width: fit-content;
+}
+
+.profilName {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: $text;
+}
+
+.profilEmail {
+  font-size: 0.8rem;
+  color: $muted2;
+}
+
+.profilFields {
+  border: 1px solid $border;
+}
+
+.profilField {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid $border;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.profilFieldLbl {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $muted;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.profilFieldVal {
+  font-size: 0.88rem;
+  color: $text;
+}
+
+// ─── Responsive ───────────────────────────────────
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .appCta {
+    padding: 28px;
+  }
+  .profilCard {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+  .appCtaBtns {
+    flex-direction: column;
+  }
+  .appBtnWhite,
+  .appBtnOutline {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

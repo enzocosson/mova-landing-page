@@ -1,0 +1,89 @@
+$accent: #a1f763;
+$bg: #080808;
+$border: rgba(255, 255, 255, 0.07);
+$header-h: 68px;
+$sidebar-w: 220px;
+
+.page {
+  min-height: 100vh;
+  background: $bg;
+  color: #f0f0f0;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.orb1 {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(161, 247, 99, 0.06),
+    transparent 65%
+  );
+  animation: orbPulse 10s ease-in-out infinite;
+}
+.orb2 {
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(161, 247, 99, 0.04),
+    transparent 65%
+  );
+  animation: orbPulse 14s ease-in-out infinite reverse;
+}
+@keyframes orbPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  padding-top: $header-h;
+  min-height: 100vh;
+}
+
+.content {
+  margin-left: $sidebar-w;
+  flex: 1;
+  padding: 40px;
+  min-height: calc(100vh - #{$header-h});
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .content {
+    margin-left: 0;
+    padding: 24px 20px;
+  }
+}

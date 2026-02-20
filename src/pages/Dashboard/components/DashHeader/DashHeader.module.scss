@@ -1,0 +1,98 @@
+$accent: #a1f763;
+$border: rgba(255, 255, 255, 0.07);
+$text: #f0f0f0;
+$muted: #888;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: rgba(8, 8, 8, 0.9);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid $border;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  img {
+    height: 26px;
+    width: auto;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(161, 247, 99, 0.1);
+  border: 1px solid rgba(161, 247, 99, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: $accent;
+  overflow: hidden;
+  flex-shrink: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.userName {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: $text;
+}
+.userRole {
+  font-size: 0.62rem;
+  color: $muted;
+  letter-spacing: 0.06em;
+}
+
+.logoutBtn {
+  background: none;
+  border: 1px solid $border;
+  color: $muted;
+  padding: 7px 18px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: none;
+  font-family: inherit;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: $text;
+  }
+}
+
+@media (max-width: 600px) {
+  .userInfo {
+    display: none;
+  }
+}

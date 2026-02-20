@@ -1,0 +1,146 @@
+$accent: #a1f763;
+$text: #f0f0f0;
+$muted: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+.section {
+  position: relative;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid $border;
+}
+
+.imgWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: grayscale(30%) brightness(0.6);
+  transform: scale(1.03);
+  transition: transform 8s ease-out;
+
+  .section:hover & {
+    transform: scale(1.06);
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(8, 8, 8, 0.85) 0%,
+      rgba(8, 8, 8, 0.3) 60%,
+      rgba(8, 8, 8, 0.6) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(8, 8, 8, 0.4) 0%,
+      transparent 40%,
+      rgba(8, 8, 8, 0.8) 100%
+    );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 0 6vw;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $accent;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin: 0 0 20px;
+  color: $text;
+}
+
+.accent {
+  color: $accent;
+}
+
+.sub {
+  color: $muted;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin: 0 0 48px;
+  max-width: 420px;
+}
+
+.stats {
+  display: flex;
+  gap: 0;
+  border: 1px solid $border;
+  background: rgba(8, 8, 8, 0.7);
+  backdrop-filter: blur(12px);
+  width: fit-content;
+}
+
+.stat {
+  padding: 20px 32px;
+  border-right: 1px solid $border;
+  text-align: center;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.statVal {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: $accent;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.statLbl {
+  display: block;
+  font-size: 0.62rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .section {
+    height: auto;
+    padding: 80px 0;
+  }
+  .stats {
+    flex-direction: column;
+  }
+  .stat {
+    border-right: none;
+    border-bottom: 1px solid $border;
+  }
+}

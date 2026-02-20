@@ -1,0 +1,462 @@
+$accent: #a1f763;
+$bg: #080808;
+$bg2: #0f0f0f;
+$bg3: #141414;
+$text: #f0f0f0;
+$muted: #555;
+$muted2: #888;
+$border: rgba(255, 255, 255, 0.07);
+
+// ─── Page ─────────────────────────────────────────
+.page {
+  min-height: 100vh;
+  background: $bg;
+  color: $text;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+// ─── Fond animé ───────────────────────────────────
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.orb1 {
+  position: absolute;
+  top: -5%;
+  right: 10%;
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(
+    ellipse,
+    rgba(161, 247, 99, 0.06),
+    transparent 65%
+  );
+  animation: pulse 9s ease-in-out infinite;
+}
+
+.orb2 {
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(161, 247, 99, 0.04),
+    transparent 65%
+  );
+  animation: pulse 12s ease-in-out infinite reverse;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// ─── Header ───────────────────────────────────────
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6vw;
+  height: 68px;
+  border-bottom: 1px solid $border;
+  background: rgba(8, 8, 8, 0.7);
+  backdrop-filter: blur(24px);
+}
+
+.logo img {
+  height: 42px;
+  width: auto;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted2;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $text;
+    .backArrow {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.backArrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+// ─── Main ─────────────────────────────────────────
+.main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 6vw 80px;
+}
+
+// ─── Card ─────────────────────────────────────────
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: $bg2;
+  border: 1px solid $border;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Tag ──────────────────────────────────────────
+.tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: $accent;
+  margin-bottom: 20px;
+}
+
+// ─── Titre ────────────────────────────────────────
+.title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+
+.accent {
+  color: $accent;
+}
+
+.sub {
+  font-size: 0.82rem;
+  color: $muted2;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+// ─── Social Buttons ───────────────────────────────
+.social {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: $bg3;
+  border: 1px solid $border;
+  padding: 13px 20px;
+  color: $text;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  cursor: none;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    border-color: rgba(161, 247, 99, 0.35);
+    background: rgba(161, 247, 99, 0.04);
+  }
+}
+
+/* Bouton visiteur (option secondaire) */
+.visitorBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px dashed rgba(161, 247, 99, 0.12);
+  color: $accent;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: none;
+  font-family: inherit;
+  transition:
+    background 0.18s,
+    border-color 0.18s,
+    opacity 0.18s;
+
+  &:hover {
+    background: rgba(161, 247, 99, 0.04);
+    border-color: rgba(161, 247, 99, 0.28);
+    opacity: 0.95;
+  }
+}
+
+// ─── Divider ──────────────────────────────────────
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: $border;
+}
+
+.dividerText {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $muted;
+  white-space: nowrap;
+}
+
+// ─── Formulaire ───────────────────────────────────
+.errorMsg {
+  background: rgba(255, 80, 80, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  color: #ff6b6b;
+  font-size: 0.78rem;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $muted;
+}
+
+.input {
+  background: $bg;
+  border: 1px solid $border;
+  padding: 13px 16px;
+  color: $text;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: $muted;
+  }
+
+  &:focus {
+    border-color: rgba(161, 247, 99, 0.4);
+  }
+}
+
+.hint {
+  font-size: 0.65rem;
+  color: $muted;
+  margin-top: -2px;
+}
+
+// ─── Sélecteur de rôle ────────────────────────────
+.roles {
+  display: flex;
+  gap: 0;
+  border: 1px solid $border;
+}
+
+.roleBtn {
+  flex: 1;
+  padding: 11px 8px;
+  background: none;
+  border: none;
+  border-right: 1px solid $border;
+  color: $muted;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: none;
+  font-family: inherit;
+  transition:
+    color 0.2s,
+    background 0.2s;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    color: $text;
+  }
+}
+
+.roleBtnActive {
+  color: $accent !important;
+  background: rgba(161, 247, 99, 0.06);
+  border-bottom: 1px solid $accent;
+  margin-bottom: -1px;
+}
+
+// ─── Bouton submit ────────────────────────────────
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: $accent;
+  color: $bg;
+  padding: 15px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: none;
+  font-family: inherit;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    opacity: 0.88;
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.submitLoading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+// ─── Légal ────────────────────────────────────────
+.legal {
+  font-size: 0.68rem;
+  color: $muted;
+  line-height: 1.7;
+  text-align: center;
+  margin: 0;
+
+  a {
+    color: $muted2;
+    text-decoration: underline;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+// ─── Switch ───────────────────────────────────────
+.switch {
+  margin-top: 24px;
+  font-size: 0.76rem;
+  color: $muted2;
+  text-align: center;
+}
+
+.switchLink {
+  color: $accent;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// ─── Responsive ───────────────────────────────────
+@media (max-width: 520px) {
+  .card {
+    padding: 36px 24px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .main {
+    padding: 40px 4vw 60px;
+    align-items: flex-start;
+    padding-top: 48px;
+  }
+}

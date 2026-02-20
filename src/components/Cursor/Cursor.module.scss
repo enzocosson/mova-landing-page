@@ -1,0 +1,83 @@
+$accent: #a1f763;
+
+// ─── Point central ────────────────────────────────
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: $accent;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  // Centrage via translate négatif
+  margin-left: -2.5px;
+  margin-top: -2.5px;
+  transition:
+    width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.2s,
+    background 0.2s;
+}
+
+.dotHover {
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background: #fff;
+}
+
+.dotClick {
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  margin-top: -2px;
+  background: $accent;
+  opacity: 0.6;
+}
+
+// ─── Anneau suiveur ───────────────────────────────
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(161, 247, 99, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  margin-left: -16px;
+  margin-top: -16px;
+  transition:
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s,
+    background 0.25s,
+    opacity 0.25s;
+}
+
+.ringHover {
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  margin-top: -24px;
+  border-color: rgba(161, 247, 99, 0.6);
+  background: rgba(161, 247, 99, 0.04);
+  // Mix-blend pour s'adapter au fond
+  mix-blend-mode: difference;
+}
+
+.ringClick {
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-color: rgba(161, 247, 99, 0.9);
+  background: rgba(161, 247, 99, 0.08);
+}
