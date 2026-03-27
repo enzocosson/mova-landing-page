@@ -98,18 +98,42 @@ const Register = () => {
       <main className={styles.main}>
         <div className={styles.card}>
           {/* Tag */}
-          <div className={styles.tag}>— Nouveau compte —</div>
-
-          {/* Titre */}
-          <h1 className={styles.title}>
-            Rejoins <span className={styles.accent}>Mova.</span>
-          </h1>
-          <p className={styles.sub}>
-            Crée ton compte gratuitement et rejoins des milliers de coureurs et
-            organisateurs.
-          </p>
-
+          <div style={{ position: "relative" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              className={styles.input}
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="new-password"
+              style={{ paddingRight: 36 }}
+            />
+            <button
+              type="button"
+              aria-label={
+                showPassword
+                  ? "Masquer le mot de passe"
+                  : "Afficher le mot de passe"
+              }
+              onClick={() => setShowPassword((v) => !v)}
+              style={{
+                position: "absolute",
+                right: 8,
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+              }}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+          <span className={styles.hint}>8 caractères minimum</span>
           {/* Social */}
+          const [showPassword, setShowPassword] = useState(false);
           <div className={styles.social}>
             <button className={styles.socialBtn}>
               <IconGoogle />
@@ -127,17 +151,14 @@ const Register = () => {
               <span>Continuer en tant que visiteur</span>
             </button>
           </div>
-
           {/* Divider */}
           <div className={styles.divider}>
             <span className={styles.dividerLine} />
             <span className={styles.dividerText}>ou par email</span>
             <span className={styles.dividerLine} />
           </div>
-
           {/* Message d'erreur */}
           {error && <p className={styles.errorMsg}>{error}</p>}
-
           {/* Formulaire */}
           <form className={styles.form} onSubmit={handleSubmit}>
             {/* Rôle */}
@@ -211,7 +232,6 @@ const Register = () => {
               <a href="#">politique de confidentialité</a>.
             </p>
           </form>
-
           {/* Switch */}
           <p className={styles.switch}>
             Déjà un compte ?{" "}
