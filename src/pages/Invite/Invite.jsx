@@ -10,6 +10,7 @@ import {
   checkEmail,
   loginWithInvitation,
   registerWithInvitation,
+  acceptInvitation,
 } from "../../api/auth";
 
 // Étapes possibles :
@@ -33,6 +34,9 @@ const Invite = () => {
   const [pageError, setPageError] = useState("");
   const [formError, setFormError] = useState("");
   const [formLoading, setFormLoading] = useState(false);
+  const [acceptLoading, setAcceptLoading] = useState(false);
+  const [acceptError, setAcceptError] = useState("");
+  const [acceptSuccess, setAcceptSuccess] = useState(false);
 
   // Champs login / confirm
   const [password, setPassword] = useState("");
@@ -96,6 +100,34 @@ const Invite = () => {
   }, [token, authLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ─── Handlers ────────────────────────────────────────────────────────────
+  // Appel explicite POST accept après authentification
+  const acceptInvite = async (jwt) => {
+    setAcceptLoading(true);
+    setAcceptError("");
+    try {
+      await acceptInvitation({ token, raceId: invitation?.race?._id, jwt });
+      setAcceptSuccess(true);
+      setStep("success");
+    } catch (err) {
+      if (err.status === 401) {
+        setAcceptError("Session expirée, merci de vous reconnecter.");
+        setStep("login");
+      } else if (err.status === 403) {
+        setAcceptError(
+          "Cette invitation n'est pas destinée à ce compte ou vous n'avez pas le rôle coureur.",
+        );
+        setStep("wrong-account");
+      } else if (err.status === 400) {
+        setAcceptError("Invitation expirée, refusée ou invalide.");
+        setStep("error");
+      } else {
+        setAcceptError(err.message || "Erreur lors de l'acceptation.");
+      }
+    } finally {
+      setAcceptLoading(false);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setFormError("");
@@ -112,7 +144,8 @@ const Invite = () => {
         role: data.role,
       };
       login(userData, accessToken);
-      setStep("success");
+      // Appel accept après login
+      await acceptInvite(accessToken);
     } catch (err) {
       setFormError(err.message || "Mot de passe incorrect.");
     } finally {
@@ -146,7 +179,8 @@ const Invite = () => {
         role: data.role,
       };
       login(userData, accessToken);
-      setStep("success");
+      // Appel accept après register
+      await acceptInvite(accessToken);
     } catch (err) {
       setFormError(err.message || "Erreur lors de l'inscription.");
     } finally {
@@ -170,7 +204,8 @@ const Invite = () => {
         role: data.role,
       };
       login(userData, accessToken);
-      setStep("success");
+      // Appel accept après confirm
+      await acceptInvite(accessToken);
     } catch (err) {
       setFormError(err.message || "Mot de passe incorrect.");
     } finally {
@@ -517,6 +552,13 @@ const Invite = () => {
               <span>Accéder au dashboard</span>
               <IconArrow />
             </button>
+            <a
+              href={`mint://race-invitation?token=${token}&raceId=${invitation?.race?._id}&email=${invitation?.email}`}
+              className={styles.submitOutline}
+              style={{ marginTop: 16 }}
+            >
+              <span>Ouvrir l'app Mint</span>
+            </a>
           </div>
         );
 

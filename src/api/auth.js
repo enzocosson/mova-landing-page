@@ -1,3 +1,29 @@
+/**
+ * Accepter explicitement une invitation (auth requise)
+ */
+export const acceptInvitation = async ({ token, raceId, jwt }) => {
+  const res = await fetch(
+    `${API_URL}/invitations/token/${token}/accept?raceId=${raceId}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    },
+  );
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const msg =
+      data.message ||
+      data.error ||
+      "Erreur lors de l'acceptation de l'invitation";
+    const error = new Error(msg);
+    error.status = res.status;
+    throw error;
+  }
+  return data;
+};
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 /**
